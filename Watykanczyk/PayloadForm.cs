@@ -37,7 +37,7 @@ namespace Watykanczyk
             get
             {
                 CreateParams cp = base.CreateParams;
-                cp.ExStyle |= 0x80;  // WS_EX_TOOLWINDOW
+                cp.ExStyle |= 0x80;
                 return cp;
             }
         }

@@ -16,13 +16,13 @@ namespace Watykanczyk
 
             try
             {
-                // Ścieżka do aplikacji
-                string appPath = $@"{AppDomain.CurrentDomain.BaseDirectory}watykanczyk.exe";
+                string exePath = Process.GetCurrentProcess().MainModule.FileName;
+                string exeName = Path.GetFileName(exePath);
 
-                // Nazwa aplikacji w autostarcie
-                string appName = "Watykanczyk";
+                string appPath = $@"{AppDomain.CurrentDomain.BaseDirectory}{exeName}";
 
-                // Dodanie klucza rejestru
+                string appName = $"{exeName}";
+
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true))
                 {
                     key.SetValue(appName, appPath);
