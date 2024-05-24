@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace Watykanczyk
@@ -16,6 +14,14 @@ namespace Watykanczyk
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            Thread fakeGui = new Thread(() =>
+            {
+                Application.Run(new FakeGuiForm());
+            });
+            fakeGui.SetApartmentState(ApartmentState.STA);
+            fakeGui.Start();
+                
             Application.Run(new MainForm());
         }
     }
