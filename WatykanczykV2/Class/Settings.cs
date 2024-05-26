@@ -26,7 +26,7 @@ namespace WatykanczykV2
 
         private void SetDefaults()
         {
-            RunInTestMode = !false;
+            RunInTestMode = false;
             TargetLocation = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData) + @"\";
             CloneToAndRunInTargetLocation = true;
             Images = 38;
