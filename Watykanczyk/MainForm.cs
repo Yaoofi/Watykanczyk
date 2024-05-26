@@ -63,7 +63,7 @@ namespace Watykanczyk
 
             Thread runPayload = new Thread(() =>
             {
-                System.IO.Stream str = Properties.Resources.Barka;
+                Stream str = Properties.Resources.Barka;
                 System.Media.SoundPlayer barka = new System.Media.SoundPlayer(str);
                 barka.Play();
 
